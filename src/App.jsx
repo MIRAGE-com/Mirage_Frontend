@@ -1,5 +1,17 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RendingPage from "./pages/RendingPage";
+import Layout from "./Layout";
+
 function App() {
-	return <h1>안녕하세요 반값브니다.</h1>;
+	return (
+		<BrowserRouter>
+			<Routes>
+				<Route element={<Layout />}>
+					<Route path="/" element={RendingPage} />
+				</Route>
+			</Routes>
+		</BrowserRouter>
+	);
 }
 
 export default App;
