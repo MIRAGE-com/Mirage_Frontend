@@ -11,7 +11,17 @@ html {
   font-size:62.5%;
 }
 body{
-  background-color: #ffffff;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("src/assets/bg.png");
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  font-family: "SbAggroM";
+}
+#root {
+  width: 100%;
+  height: 100%;
 }
 a {
   color: inherit;

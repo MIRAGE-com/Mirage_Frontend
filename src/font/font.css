@@ -1,17 +1,17 @@
 @font-face {
-	font-family: "SB-어그로-B";
+	font-family: "SbAggroB";
 	font-style: normal;
-	src: url("./SB\ 어그로\ B.ttf") format("truetype");
+	src: url("./SbAggroB.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: "SB-어그로-M";
+	font-family: "SbAggroM";
 	font-style: normal;
-	src: url("./SB\ 어그로\ M.ttf") format("truetype");
+	src: url("./SbAggroM.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: "SB-어그로-L";
+	font-family: "SbAggroL";
 	font-style: normal;
-	src: url("./SB\ 어그로\ L.ttf") format("truetype");
+	src: url("./SbAggroL.ttf") format("truetype");
 }

@@ -7,7 +7,7 @@ function App() {
 		<BrowserRouter>
 			<Routes>
 				<Route element={<Layout />}>
-					<Route path="/" element={RendingPage} />
+					<Route path="/" element={<RendingPage />} />
 				</Route>
 			</Routes>
 		</BrowserRouter>
