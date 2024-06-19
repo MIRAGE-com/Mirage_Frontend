@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import Logo from "../assets/svg/mirageLogo.svg?react";
 import UserImg from "../assets/svg/user.svg?react";
+import { Link } from "react-router-dom";
 
 function Header() {
 	return (
 		<MainHeader>
-			<Logo />
+			<Link to="/">
+				<Logo />
+			</Link>
 			<UserImg />
 		</MainHeader>
 	);
