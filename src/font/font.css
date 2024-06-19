@@ -1,0 +1,17 @@
+@font-face {
+	font-family: "SB-어그로-B";
+	font-style: normal;
+	src: url("./SB\ 어그로\ B.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "SB-어그로-M";
+	font-style: normal;
+	src: url("./SB\ 어그로\ M.ttf") format("truetype");
+}
+
+@font-face {
+	font-family: "SB-어그로-L";
+	font-style: normal;
+	src: url("./SB\ 어그로\ L.ttf") format("truetype");
+}
