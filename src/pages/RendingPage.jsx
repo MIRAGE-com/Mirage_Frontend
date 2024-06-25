@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import Button from "../components/ui/Button";
 
 function RendingPage() {
 	const container = {
@@ -25,9 +26,9 @@ function RendingPage() {
 				<TitleExplore variants={item}>탐험하</TitleExplore>고 싶으신가요?
 			</Title>
 			<Detail variants={item}>AI 꿈 분석으로 당신의 꿈을 탐험해 보세요.</Detail>
-			<ExploreBtn variants={item}>
+			<Button variants={item}>
 				<Link to="/analyze">탐험하기</Link>
-			</ExploreBtn>
+			</Button>
 		</Main>
 	);
 }
@@ -39,6 +40,7 @@ const Main = styled(motion.main)`
 	height: 100%;
 	position: absolute;
 	top: 0px;
+	left: 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -67,23 +69,4 @@ const Detail = styled(motion.p)`
 	color: white;
 	font-size: 2rem;
 	font-family: "SbAggroL";
-`;
-
-const ExploreBtn = styled(motion.div)`
-	width: 140px;
-	height: 70px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-size: 2rem;
-	border: 2px solid transparent;
-	border-radius: 100px;
-	background-image: linear-gradient(#000, #000),
-		linear-gradient(90deg, #e9c2ec, #a6c0ee);
-	background-origin: border-box;
-	background-clip: content-box, border-box;
-	color: white;
-	a {
-		padding: 18px;
-	}
 `;

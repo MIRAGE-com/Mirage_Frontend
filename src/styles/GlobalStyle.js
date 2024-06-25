@@ -13,15 +13,18 @@ html {
 body{
   width: 100vw;
   height: 100vh;
+  padding: 0px 20rem;
   background-image: url("src/assets/bg.png");
   background-size: cover;
   background-position: center center;
   font-family: "SbAggroM";
   color: white;
+  transition: padding 0.5s linear;
 }
 #root {
   width: 100%;
   height: 100%;
+  min-width: 50rem;
 }
 a {
   color: inherit;
