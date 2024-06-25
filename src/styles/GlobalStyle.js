@@ -16,8 +16,8 @@ body{
   background-image: url("src/assets/bg.png");
   background-size: cover;
   background-position: center center;
-  background-repeat: no-repeat;
   font-family: "SbAggroM";
+  color: white;
 }
 #root {
   width: 100%;

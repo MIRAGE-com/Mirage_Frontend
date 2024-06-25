@@ -26,7 +26,7 @@ function RendingPage() {
 			</Title>
 			<Detail variants={item}>AI 꿈 분석으로 당신의 꿈을 탐험해 보세요.</Detail>
 			<ExploreBtn variants={item}>
-				<Link to="">탐험하기</Link>
+				<Link to="/analyze">탐험하기</Link>
 			</ExploreBtn>
 		</Main>
 	);
@@ -35,7 +35,10 @@ function RendingPage() {
 export default RendingPage;
 
 const Main = styled(motion.main)`
+	width: 100%;
 	height: 100%;
+	position: absolute;
+	top: 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -76,7 +79,7 @@ const ExploreBtn = styled(motion.div)`
 	border: 2px solid transparent;
 	border-radius: 100px;
 	background-image: linear-gradient(#000, #000),
-		linear-gradient(90deg, #dffbc2, #e9c2ec);
+		linear-gradient(90deg, #e9c2ec, #a6c0ee);
 	background-origin: border-box;
 	background-clip: content-box, border-box;
 	color: white;

@@ -18,8 +18,9 @@ export default Header;
 
 const MainHeader = styled.header`
 	width: 100%;
+	height: 15%;
 	padding: 40px 200px;
-	position: fixed;
+	position: sticky;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
