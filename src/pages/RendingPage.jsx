@@ -55,6 +55,7 @@ const Title = styled(motion.h2)`
 	text-align: center;
 	line-height: 1.2;
 	color: transparent;
+	word-break: keep-all;
 `;
 
 const TitleExplore = styled(motion.span)`

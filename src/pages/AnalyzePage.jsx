@@ -2,11 +2,12 @@ import styled from "styled-components";
 import Button from "../components/ui/Button";
 import { useRef, useState } from "react";
 import { PostDream } from "../service/api";
+import { useAtom } from "jotai";
+import { responseAtom } from "../constant/atom";
 
 function AnalyzePage() {
 	const [name, setName] = useState("");
 	const [content, setContent] = useState("");
-	const [response, setResponse] = useState({});
 	const cInputRef = useRef(null);
 
 	return (
@@ -45,7 +46,7 @@ function AnalyzePage() {
 			<RButton
 				onClick={() => {
 					console.log("눌렀어");
-					setResponse(PostDream(name, content));
+					PostDream(name, content);
 				}}
 			>
 				분석하기

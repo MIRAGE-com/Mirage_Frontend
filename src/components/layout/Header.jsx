@@ -9,7 +9,7 @@ function Header() {
 			<Link to="/">
 				<Logo />
 			</Link>
-			<SubTitle to="/">꿈 리스트</SubTitle>
+			<SubTitle to="/result">꿈 리스트</SubTitle>
 		</MainHeader>
 	);
 }
