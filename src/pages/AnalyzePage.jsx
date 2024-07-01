@@ -1,23 +1,55 @@
 import styled from "styled-components";
 import Button from "../components/ui/Button";
+import { useRef, useState } from "react";
+import { PostDream } from "../service/api";
 
 function AnalyzePage() {
+	const [name, setName] = useState("");
+	const [content, setContent] = useState("");
+	const [response, setResponse] = useState({});
+	const cInputRef = useRef(null);
+
 	return (
 		<Main>
 			<SubTitle>AI 꿈 분석으로 당신의 꿈을 탐험해 보세요.</SubTitle>
 			<InputBG>
 				<InputBox>
 					<NameBox>
-						<NameTitle>사용자 이름 : </NameTitle>
-						<NameInput type="text" />
+						<NameTitle>탐험가 이름 : </NameTitle>
+						<NameInput
+							type="text"
+							onChange={(e) => {
+								setName(e.target.value);
+								console.log(e.target.value);
+							}}
+							onKeyDown={(e) => {
+								if (e.key === "Enter") {
+									e.preventDefault();
+									cInputRef.current.focus();
+								}
+							}}
+						/>
 					</NameBox>
 					<ContentBox>
 						<ContentTitle>꿈 내용을 입력하세요!</ContentTitle>
-						<ContentInput />
+						<ContentInput
+							ref={cInputRef}
+							onChange={(e) => {
+								setContent(e.target.value);
+								console.log(e.target.value);
+							}}
+						/>
 					</ContentBox>
 				</InputBox>
 			</InputBG>
-			<RButton>분석하기</RButton>
+			<RButton
+				onClick={() => {
+					console.log("눌렀어");
+					setResponse(PostDream(name, content));
+				}}
+			>
+				분석하기
+			</RButton>
 		</Main>
 	);
 }
@@ -77,8 +109,8 @@ const NameInput = styled.input`
 	width: 100%;
 	min-width: 10rem;
 	padding: 5px;
-	border-top: 2px solid white;
-	border-bottom: 2px solid white;
+	border-top: 2px solid #cbcbcb;
+	border-bottom: 2px solid #cbcbcb;
 	border-right: 0px;
 	border-left: 0px;
 	color: white;
@@ -105,8 +137,8 @@ const ContentInput = styled.textarea`
 	height: 100%;
 	min-width: 10rem;
 	padding: 5px;
-	border-top: 2px solid white;
-	border-bottom: 2px solid white;
+	border-top: 2px solid #cbcbcb;
+	border-bottom: 2px solid #cbcbcb;
 	border-right: 0px;
 	border-left: 0px;
 	outline: none;

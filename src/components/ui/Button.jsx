@@ -1,18 +1,13 @@
 import { motion } from "framer-motion";
 import { styled } from "styled-components";
 
-function Button({ children, bgColor, ...props }) {
+function Button({ children, bgColor = "#000", ...props }) {
 	return (
 		<ExploreBtn bgColor={bgColor} {...props}>
 			{children}
 		</ExploreBtn>
 	);
 }
-
-Button.defaultProps = {
-	children: null,
-	bgColor: "#000",
-};
 
 export default Button;
 
