@@ -9,6 +9,7 @@ function AnalyzePage() {
 	const [name, setName] = useState("");
 	const [content, setContent] = useState("");
 	const cInputRef = useRef(null);
+	const [response, setResponse] = useAtom(responseAtom);
 
 	return (
 		<Main>
@@ -21,7 +22,7 @@ function AnalyzePage() {
 							type="text"
 							onChange={(e) => {
 								setName(e.target.value);
-								console.log(e.target.value);
+								// console.log(e.target.value);
 							}}
 							onKeyDown={(e) => {
 								if (e.key === "Enter") {
@@ -29,6 +30,7 @@ function AnalyzePage() {
 									cInputRef.current.focus();
 								}
 							}}
+							required
 						/>
 					</NameBox>
 					<ContentBox>
@@ -37,16 +39,22 @@ function AnalyzePage() {
 							ref={cInputRef}
 							onChange={(e) => {
 								setContent(e.target.value);
-								console.log(e.target.value);
+								// console.log(e.target.value);
 							}}
+							required
 						/>
 					</ContentBox>
 				</InputBox>
 			</InputBG>
 			<RButton
-				onClick={() => {
+				onClick={async () => {
 					console.log("눌렀어");
-					PostDream(name, content);
+					try {
+						const res = await PostDream(name, content);
+						setResponse(res);
+					} catch (e) {
+						console.log(e);
+					}
 				}}
 			>
 				분석하기
@@ -72,6 +80,7 @@ const SubTitle = styled.h3`
 
 const RButton = styled(Button)`
 	align-self: flex-end;
+	cursor: pointer;
 `;
 
 const InputBG = styled.form`
