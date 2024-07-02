@@ -18,5 +18,17 @@ export async function GetDream(id) {
 		const res = await axios.get(`http://localhost:8080/get/${id}`);
 		console.log(res.data);
 		return res.data;
-	} catch (e) {}
+	} catch (e) {
+		console.log(e);
+	}
+}
+
+export async function GetDreamList() {
+	try {
+		const res = await axios.get("http://localhost:8080/list");
+		console.log(res.data);
+		return res.data;
+	} catch (e) {
+		console.log(e);
+	}
 }

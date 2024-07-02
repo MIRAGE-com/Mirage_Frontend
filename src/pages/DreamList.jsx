@@ -1,30 +1,45 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { GetDreamList } from "../service/api";
+import { Link } from "react-router-dom";
 
 function DreamList() {
+	const [dreamListData, setDreamListData] = useState(null);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		const fetchDreamList = async () => {
+			try {
+				setLoading(true);
+				const data = await GetDreamList();
+				setDreamListData(data);
+				setLoading(false);
+			} catch (e) {
+				console.log(e);
+				setLoading(false);
+			}
+		};
+
+		fetchDreamList();
+	}, []);
+
+	if (loading) return <p>Loading...</p>;
+
 	return (
 		<Main>
 			<SubTitle>꿈 리스트</SubTitle>
 			<BoxBG>
 				<BoxContainer>
-					<ContentElement>
-						<CElementCover>
-							<CETitle>귀신꿈입니다</CETitle>
-							<CESummary>귀신을 먹어버렸...</CESummary>
-						</CElementCover>
-					</ContentElement>
-					<ContentElement>
-						<CElementCover>
-							<CETitle>귀신 꿈</CETitle>
-							<CESummary>귀신을 먹어버렸...</CESummary>
-						</CElementCover>
-					</ContentElement>
-					<ContentElement>
-						<CElementCover>
-							<CETitle>귀신 꿈</CETitle>
-							<CESummary>귀신을 먹어버렸...</CESummary>
-						</CElementCover>
-					</ContentElement>
+					{dreamListData.map((e, index) => {
+						return (
+							<ContentElement key={index} to={`/result/${e._id}`}>
+								<CElementCover>
+									<CETitle>{e.title}</CETitle>
+									<CESummary>{e.summary}</CESummary>
+								</CElementCover>
+							</ContentElement>
+						);
+					})}
 				</BoxContainer>
 			</BoxBG>
 		</Main>
@@ -67,7 +82,7 @@ const BoxContainer = styled.div`
 	overflow-y: scroll;
 `;
 
-const ContentElement = styled.div`
+const ContentElement = styled(Link)`
 	width: 22rem;
 	height: 27rem;
 	border: 2px solid transparent;
@@ -84,7 +99,7 @@ const ContentElement = styled.div`
 
 const CElementCover = styled.div`
 	width: 100%;
-	height: 30%;
+	height: 33%;
 	padding: 12px;
 	display: flex;
 	flex-direction: column;
@@ -103,6 +118,11 @@ const CETitle = styled.h3`
 `;
 
 const CESummary = styled.p`
+	width: 100%;
+	padding-top: 2px;
 	font-size: 20px;
 	font-family: "SbAggroL";
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 `;

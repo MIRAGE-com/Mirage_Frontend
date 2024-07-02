@@ -53,7 +53,6 @@ function AnalyzePage() {
 					console.log("눌렀어");
 					try {
 						const res = await PostDream(name, content);
-						setResponse(res);
 						navigate(`/result/${res.id}`);
 					} catch (e) {
 						console.log(e);

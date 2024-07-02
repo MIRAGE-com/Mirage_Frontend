@@ -25,7 +25,7 @@ function ResultPage() {
 		fetchDream();
 	}, [params.id]);
 
-	if (loading) return <p>Loading...</p>; // 로딩 중일 때 보여줄 UI
+	if (loading) return <p>Loading...</p>;
 
 	return (
 		<Main>
@@ -86,7 +86,7 @@ const Main = styled.main`
 `;
 
 const SubTitle = styled.h3`
-	font-size: 2rem;
+	font-size: 3rem;
 `;
 
 const InputBG = styled.div`
@@ -188,7 +188,7 @@ const Keywords = styled(BoxContent)`
 	gap: 10px;
 `;
 
-const Keyword = styled.h3`
+const Keyword = styled.span`
 	padding: 4px;
 	border: 2px solid white;
 	background-color: #6b6b6b;
