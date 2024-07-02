@@ -36,7 +36,7 @@ function ResultPage() {
 						<LDevideBox>
 							<LDInBox>
 								<Name>탐험가 {dreamData.name}</Name>
-								<Img src="https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800" />
+								<Img src={dreamData.imageUrl} />
 							</LDInBox>
 							<LDInBox>
 								<BoxTitle>키워드</BoxTitle>
@@ -178,7 +178,8 @@ const Name = styled.h2`
 
 const Img = styled.img`
 	height: 85%;
-	border: 2px solid white;
+	/* border-left: 2px solid white;
+	border-right: 2px solid white; */
 	object-fit: contain;
 `;
 
