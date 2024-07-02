@@ -4,12 +4,14 @@ import { useRef, useState } from "react";
 import { PostDream } from "../service/api";
 import { useAtom } from "jotai";
 import { responseAtom } from "../constant/atom";
+import { useNavigate } from "react-router-dom";
 
 function AnalyzePage() {
 	const [name, setName] = useState("");
 	const [content, setContent] = useState("");
 	const cInputRef = useRef(null);
 	const [response, setResponse] = useAtom(responseAtom);
+	const navigate = useNavigate();
 
 	return (
 		<Main>
@@ -52,6 +54,7 @@ function AnalyzePage() {
 					try {
 						const res = await PostDream(name, content);
 						setResponse(res);
+						navigate(`/result/${res.id}`);
 					} catch (e) {
 						console.log(e);
 					}

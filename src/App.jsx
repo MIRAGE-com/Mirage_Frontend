@@ -14,7 +14,7 @@ function App() {
 					<Route element={<Layout />}>
 						<Route path="/" element={<RendingPage />} />
 						<Route path="/analyze" element={<AnalyzePage />} />
-						<Route path="/result" element={<ResultPage />} />
+						<Route path="/result/:id" element={<ResultPage />} />
 						<Route path="/list" element={<DreamList />} />
 					</Route>
 				</Routes>

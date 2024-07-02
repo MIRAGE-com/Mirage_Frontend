@@ -14,7 +14,7 @@ body{
   width: 100vw;
   height: 100vh;
   padding: 0px 20rem;
-  background-image: url("src/assets/bg.png");
+  background-image: url("/src/assets/bg.png");
   background-size: cover;
   background-position: center center;
   font-family: "SbAggroM";

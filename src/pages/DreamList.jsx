@@ -9,7 +9,7 @@ function DreamList() {
 				<BoxContainer>
 					<ContentElement>
 						<CElementCover>
-							<CETitle>귀신 꿈</CETitle>
+							<CETitle>귀신꿈입니다</CETitle>
 							<CESummary>귀신을 먹어버렸...</CESummary>
 						</CElementCover>
 					</ContentElement>

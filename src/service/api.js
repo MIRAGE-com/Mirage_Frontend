@@ -12,3 +12,11 @@ export async function PostDream(name, content) {
 		console.log(e);
 	}
 }
+
+export async function GetDream(id) {
+	try {
+		const res = await axios.get(`http://localhost:8080/get/${id}`);
+		console.log(res.data);
+		return res.data;
+	} catch (e) {}
+}
