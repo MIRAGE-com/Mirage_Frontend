@@ -32,33 +32,38 @@ function ResultPage() {
 			<SubTitle>결과</SubTitle>
 			<InputBG>
 				<ResultBox>
-					<CBox>
-						<Box></Box>
-						<Box>
-							<BoxTitle>과거</BoxTitle>
-							<BoxContent>{dummy.pastEvents}</BoxContent>
-						</Box>
-					</CBox>
-					<CBox>
-						<Box>
-							<BoxTitle>키워드</BoxTitle>
-							<BoxContent>바보, 멍청이</BoxContent>
-						</Box>
-						<Box>
-							<BoxTitle>미래</BoxTitle>
-							<BoxContent>{dummy.futureEvents}</BoxContent>
-						</Box>
-					</CBox>
-					<CBox>
-						<LongBox>
+					<LeftBox>
+						<LDevideBox>
+							<LDInBox>
+								<Name>탐험가 {dummy.name}</Name>
+								<Img src="https://mblogthumb-phinf.pstatic.net/MjAyMjAxMjVfMjAy/MDAxNjQzMTAyOTk2NjE0.gw_H_jjBM64svaftcnheR6-mHHlmGOyrr6htAuxPETsg.8JJSQNEA5HX2WmrshjZ-VjmJWqhmgE40Qm5csIud9VUg.JPEG.minziminzi128/IMG_7374.JPG?type=w800" />
+							</LDInBox>
+							<LDInBox>
+								<BoxTitle>키워드</BoxTitle>
+								<BoxContent>유령, 칼</BoxContent>
+							</LDInBox>
+						</LDevideBox>
+						<LDevideBox_BT>
+							<LDInBox>
+								<BoxTitle>과거</BoxTitle>
+								<BoxContent>{dummy.pastEvents}</BoxContent>
+							</LDInBox>
+							<LDInBox>
+								<BoxTitle>미래</BoxTitle>
+								<BoxContent>{dummy.futureEvents}</BoxContent>
+							</LDInBox>
+						</LDevideBox_BT>
+					</LeftBox>
+					<RightBox>
+						<RInBox>
 							<BoxTitle>종합 분석</BoxTitle>
 							<BoxContent>{dummy.overallInterpretation}</BoxContent>
-						</LongBox>
-						<ShortBox>
+						</RInBox>
+						<RInBox>
 							<BoxTitle>요약</BoxTitle>
 							<BoxContent>{dummy.summary}</BoxContent>
-						</ShortBox>
-					</CBox>
+						</RInBox>
+					</RightBox>
 				</ResultBox>
 			</InputBG>
 		</Main>
@@ -94,38 +99,58 @@ const ResultBox = styled.div`
 	width: 100%;
 	height: 100%;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 `;
 
-// 샤샤샷샷샤샤샤샤 카드가 돌아가는 느낌? 뭔말알?
-const CBox = styled.div`
-	width: 33%;
+const LeftBox = styled.div`
+	width: 66%;
 	height: 100%;
-	background-color: white;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 `;
 
-const Box = styled.div`
-	height: 45%;
-	padding: 12px;
+const LDevideBox = styled.div`
+	width: 100%;
+	height: 50%;
+	display: flex;
+	gap: 10px;
+`;
+
+const LDevideBox_BT = styled(LDevideBox)`
+	border-top: 2px solid white;
+	padding-top: 8px;
+`;
+
+const LDInBox = styled.div`
+	width: 50%;
+	height: 100%;
+	padding: 16px;
 	display: flex;
 	flex-direction: column;
 	gap: 12px;
-	background-color: #9e9e9e;
-	font-size: 24px;
 	overflow: scroll;
 `;
 
-const LongBox = styled(Box)`
-	height: 55%;
-	font-size: 20px;
+const RightBox = styled.div`
+	width: 33%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	border-left: 2px solid white;
 `;
 
-const ShortBox = styled(Box)`
-	height: 35%;
-	font-size: 20px;
+const RInBox = styled.div`
+	width: 100%;
+	height: 50%;
+	padding: 16px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	overflow: scroll;
+	p {
+		font-size: 20px;
+	}
 `;
 
 const BoxTitle = styled.h3`
@@ -136,8 +161,21 @@ const BoxTitle = styled.h3`
 `;
 
 const BoxContent = styled.p`
+	font-size: 24px;
 	font-family: "SbAggroL";
 	line-height: 1.2;
+`;
+
+const Name = styled.h2`
+	height: 10%;
+	font-size: 20px;
+	text-align: center;
+`;
+
+const Img = styled.img`
+	height: 85%;
+	border: 2px solid white;
+	object-fit: contain;
 `;
 
 // ======================================== //
