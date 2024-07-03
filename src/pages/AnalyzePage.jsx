@@ -5,16 +5,38 @@ import { PostDream } from "../service/api";
 import { useAtom } from "jotai";
 import { responseAtom } from "../constant/atom";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function AnalyzePage() {
 	const [name, setName] = useState("");
 	const [content, setContent] = useState("");
+	const [loading, setLoading] = useState(true);
 	const cInputRef = useRef(null);
 	const [response, setResponse] = useAtom(responseAtom);
 	const navigate = useNavigate();
 
+	const container = {
+		initial: { scale: 0 },
+		animate: {
+			scale: 1,
+			transition: {
+				type: "spring",
+				duration: 0.5,
+				bounce: 0.1,
+			},
+		},
+		exit: {
+			scale: 0,
+			transition: {
+				duration: 0.5,
+				type: "spring",
+				bounce: 0.1,
+			},
+		},
+	};
+
 	return (
-		<Main>
+		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<SubTitle>AI 꿈 분석으로 당신의 꿈을 탐험해 보세요.</SubTitle>
 			<InputBG>
 				<InputBox>
@@ -51,8 +73,10 @@ function AnalyzePage() {
 			<RButton
 				onClick={async () => {
 					console.log("눌렀어");
+					setLoading(true);
 					try {
 						const res = await PostDream(name, content);
+						setLoading(false);
 						navigate(`/result/${res.id}`);
 					} catch (e) {
 						console.log(e);
@@ -61,13 +85,26 @@ function AnalyzePage() {
 			>
 				분석하기
 			</RButton>
+			{/* {loading ? <LoadingBox></LoadingBox> : null} */}
 		</Main>
 	);
 }
 
 export default AnalyzePage;
 
-const Main = styled.main`
+const LoadingBox = styled.div`
+	width: 100vw;
+	height: 100vh;
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 1;
+	top: 0px;
+	background-color: rgba(142, 142, 142, 0.9);
+`;
+
+const Main = styled(motion.main)`
 	width: 100%;
 	height: 85%;
 	display: flex;

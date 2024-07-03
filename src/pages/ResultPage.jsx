@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { GetDream } from "../service/api";
+import { motion } from "framer-motion";
 
 function ResultPage() {
 	const [dreamData, setDreamData] = useState(null);
@@ -25,10 +26,30 @@ function ResultPage() {
 		fetchDream();
 	}, [params.id]);
 
+	const container = {
+		initial: { scale: 0 },
+		animate: {
+			scale: 1,
+			transition: {
+				type: "spring",
+				duration: 0.5,
+				bounce: 0.1,
+			},
+		},
+		exit: {
+			scale: 0,
+			transition: {
+				duration: 0.5,
+				type: "spring",
+				bounce: 0.1,
+			},
+		},
+	};
+
 	if (loading) return <p>Loading...</p>;
 
 	return (
-		<Main>
+		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<SubTitle>{dreamData.title}</SubTitle>
 			<InputBG>
 				<ResultBox>
@@ -76,7 +97,7 @@ function ResultPage() {
 
 export default ResultPage;
 
-const Main = styled.main`
+const Main = styled(motion.main)`
 	width: 100%;
 	height: 85%;
 	display: flex;
@@ -196,5 +217,3 @@ const Keyword = styled.span`
 	font-size: 30px;
 	font-family: "SbAggroM";
 `;
-
-// ======================================== //

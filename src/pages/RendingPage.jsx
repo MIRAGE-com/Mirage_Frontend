@@ -5,22 +5,34 @@ import Button from "../components/ui/Button";
 
 function RendingPage() {
 	const container = {
-		hidden: { opacity: 0 },
-		show: {
-			opacity: 1,
+		initial: { scale: 0 },
+		animate: {
+			scale: 1,
 			transition: {
+				type: "spring",
+				duration: 0.5,
+				bounce: 0.1,
+				// delayChildren: 0.5,
 				staggerChildren: 0.6,
+			},
+		},
+		exit: {
+			scale: 0,
+			transition: {
+				duration: 0.5,
+				type: "spring",
+				bounce: 0.1,
 			},
 		},
 	};
 
 	const item = {
-		hidden: { opacity: 0, y: 20 },
-		show: { opacity: 1, y: 0 },
+		initial: { opacity: 0, y: 20 },
+		animate: { opacity: 1, y: 0 },
 	};
 
 	return (
-		<Main variants={container} initial="hidden" animate="show">
+		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<Title variants={item}>
 				당신의 미래와 내면의 심연을 <br />
 				<TitleExplore variants={item}>탐험하</TitleExplore>고 싶으신가요?

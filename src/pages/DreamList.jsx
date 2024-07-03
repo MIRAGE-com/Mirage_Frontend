@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { GetDreamList } from "../service/api";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 function DreamList() {
 	const [dreamListData, setDreamListData] = useState(null);
@@ -23,10 +24,30 @@ function DreamList() {
 		fetchDreamList();
 	}, []);
 
+	const container = {
+		initial: { scale: 0 },
+		animate: {
+			scale: 1,
+			transition: {
+				type: "spring",
+				duration: 0.5,
+				bounce: 0.1,
+			},
+		},
+		exit: {
+			scale: 0,
+			transition: {
+				duration: 0.5,
+				type: "spring",
+				bounce: 0.1,
+			},
+		},
+	};
+
 	if (loading) return <p>Loading...</p>;
 
 	return (
-		<Main>
+		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<SubTitle>꿈 리스트</SubTitle>
 			<BoxBG>
 				<BoxContainer>
@@ -52,7 +73,7 @@ function DreamList() {
 
 export default DreamList;
 
-const Main = styled.main`
+const Main = styled(motion.main)`
 	width: 100%;
 	height: 85%;
 	display: flex;
