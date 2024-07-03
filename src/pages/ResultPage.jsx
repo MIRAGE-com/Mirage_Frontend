@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { GetDream } from "../service/api";
-import { motion } from "framer-motion";
+import { delay, motion } from "framer-motion";
 
 function ResultPage() {
 	const [dreamData, setDreamData] = useState(null);
@@ -46,48 +46,113 @@ function ResultPage() {
 		},
 	};
 
+	const borderTop = {
+		initial: {
+			borderTop: "0px solid rgba(0, 0, 0, 0)",
+		},
+		whileHover: {
+			borderTop: "4px solid #d3d3d3",
+		},
+		transition: {
+			duration: 0.3,
+		},
+	};
+
+	const init = {
+		initial: {
+			opacity: 0,
+		},
+		animate: {
+			opacity: 1,
+			transition: {
+				delay: 1,
+				duration: 1,
+			},
+		},
+	};
+
 	if (loading) return <p>Loading...</p>;
 
 	return (
 		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<SubTitle>{dreamData.title}</SubTitle>
 			<InputBG>
-				<ResultBox>
+				<ResultBox variants={init}>
 					<LeftBox>
-						<LDevideBox>
-							<LDInBox>
-								<Name>탐험가 {dreamData.name}</Name>
-								<Img src={dreamData.imageUrl} />
-							</LDInBox>
-							<LDInBox>
-								<BoxTitle>키워드</BoxTitle>
+						<LDInFullBox>
+							<Name
+								initial={{ textShadow: "0px 0px 0px #e9c2ec" }}
+								animate={{
+									textShadow: "0px 0px 15px #e9c2ec",
+									fontSize: "30px",
+								}}
+								transition={{ duration: 0.5, delay: 1.5 }}
+							>
+								탐험가 {dreamData.name}
+							</Name>
+							<Img
+								whileHover={{
+									scale: 1.1,
+								}}
+								src={dreamData.imageUrl}
+							/>
+							<KeywordDiv>
+								<KeywordTitle>키워드</KeywordTitle>
 								<Keywords>
 									{Object.keys(dreamData.keywords).map((key, index) => (
 										<Keyword key={index}>{key}</Keyword>
 									))}
 								</Keywords>
-							</LDInBox>
-						</LDevideBox>
+							</KeywordDiv>
+						</LDInFullBox>
 						<LDevideBox_BT>
 							<LDInBox>
 								<BoxTitle>과거</BoxTitle>
-								<BoxContent>{dreamData.past_event}</BoxContent>
+								<BoxContent
+									variants={borderTop}
+									initial="initial"
+									whileHover="whileHover"
+									transition="transition"
+								>
+									{dreamData.past_event}
+								</BoxContent>
 							</LDInBox>
 							<LDInBox>
 								<BoxTitle>미래</BoxTitle>
-								<BoxContent>{dreamData.future_event}</BoxContent>
+								<BoxContent
+									variants={borderTop}
+									initial="initial"
+									whileHover="whileHover"
+									transition="transition"
+								>
+									{dreamData.future_event}
+								</BoxContent>
 							</LDInBox>
 						</LDevideBox_BT>
 					</LeftBox>
 					<RightBox>
-						<RInBox>
+						<RInLongBox>
 							<BoxTitle>종합 분석</BoxTitle>
-							<BoxContent>{dreamData.overall_interpretation}</BoxContent>
-						</RInBox>
-						<RInBox>
+							<BoxContent
+								variants={borderTop}
+								initial="initial"
+								whileHover="whileHover"
+								transition="transition"
+							>
+								{dreamData.overall_interpretation}
+							</BoxContent>
+						</RInLongBox>
+						<RInShortBox>
 							<BoxTitle>요약</BoxTitle>
-							<BoxContent>{dreamData.summary}</BoxContent>
-						</RInBox>
+							<BoxContent
+								variants={borderTop}
+								initial="initial"
+								whileHover="whileHover"
+								transition="transition"
+							>
+								{dreamData.summary}
+							</BoxContent>
+						</RInShortBox>
 					</RightBox>
 				</ResultBox>
 			</InputBG>
@@ -110,7 +175,7 @@ const SubTitle = styled.h3`
 	font-size: 3rem;
 `;
 
-const InputBG = styled.div`
+const InputBG = styled(motion.div)`
 	width: 100%;
 	height: 85%;
 	border: 2px solid transparent;
@@ -120,14 +185,14 @@ const InputBG = styled.div`
 	background-clip: content-box, border-box;
 `;
 
-const ResultBox = styled.div`
+const ResultBox = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
 `;
 
-const LeftBox = styled.div`
+const LeftBox = styled(motion.div)`
 	width: 66%;
 	height: 100%;
 	display: flex;
@@ -135,7 +200,7 @@ const LeftBox = styled.div`
 	justify-content: space-evenly;
 `;
 
-const LDevideBox = styled.div`
+const LDevideBox = styled(motion.div)`
 	width: 100%;
 	height: 50%;
 	display: flex;
@@ -147,7 +212,18 @@ const LDevideBox_BT = styled(LDevideBox)`
 	padding-top: 8px;
 `;
 
-const LDInBox = styled.div`
+const LDInFullBox = styled(motion.div)`
+	width: 100%;
+	height: 50%;
+	padding: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	overflow: hidden;
+`;
+
+const LDInBox = styled(motion.div)`
 	width: 50%;
 	height: 100%;
 	padding: 16px;
@@ -157,7 +233,7 @@ const LDInBox = styled.div`
 	overflow: scroll;
 `;
 
-const RightBox = styled.div`
+const RightBox = styled(motion.div)`
 	width: 33%;
 	height: 100%;
 	display: flex;
@@ -165,7 +241,7 @@ const RightBox = styled.div`
 	border-left: 2px solid white;
 `;
 
-const RInBox = styled.div`
+const RInBox = styled(motion.div)`
 	width: 100%;
 	height: 50%;
 	padding: 16px;
@@ -178,35 +254,58 @@ const RInBox = styled.div`
 	}
 `;
 
-const BoxTitle = styled.h3`
-	padding-bottom: 4px;
-	border-bottom: 2px solid white;
-	font-size: 30px;
+const RInLongBox = styled(RInBox)`
+	height: 70%;
+`;
+const RInShortBox = styled(RInBox)`
+	height: 30%;
+`;
+
+const BoxTitle = styled(motion.h3)`
+	font-size: 32px;
 	font-family: "SbAggroM";
 `;
 
-const BoxContent = styled.p`
+const BoxContent = styled(motion.p)`
+	padding-top: 8px;
 	font-size: 24px;
 	font-family: "SbAggroL";
 	line-height: 1.2;
 `;
 
-const Name = styled.h2`
-	height: 10%;
-	font-size: 20px;
+const Name = styled(motion.h3)`
+	width: 25%;
+	font-size: 26px;
 	text-align: center;
+	word-break: keep-all;
 `;
 
-const Img = styled.img`
-	height: 85%;
+const Img = styled(motion.img)`
+	width: 25.6rem;
+	height: 25.6rem;
+	cursor: pointer;
 	/* border-left: 2px solid white;
 	border-right: 2px solid white; */
-	object-fit: contain;
+`;
+
+const KeywordDiv = styled.div`
+	width: 40%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	overflow: scroll;
+`;
+
+const KeywordTitle = styled(BoxTitle)`
+	padding-top: 4px;
 `;
 
 const Keywords = styled(BoxContent)`
+	width: 100%;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 	gap: 10px;
 `;
 

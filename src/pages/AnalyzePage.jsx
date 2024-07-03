@@ -90,14 +90,14 @@ function AnalyzePage() {
 			<RButton
 				onClick={async () => {
 					console.log("눌렀어");
-					// if (name === "" || content === "") {
-					// 	alert("내용을 적어주세요!");
-					// 	return;
-					// }
+					if (name === "" || content === "") {
+						alert("내용을 적어주세요!");
+						return;
+					}
 					setLoading(true);
 					try {
-						// const res = await PostDream(name, content);
-						// setLoading(false);
+						const res = await PostDream(name, content);
+						setLoading(false);
 						navigate(`/result/${res.id}`);
 					} catch (e) {
 						console.log(e);
