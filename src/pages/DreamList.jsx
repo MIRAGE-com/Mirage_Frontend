@@ -49,12 +49,17 @@ function DreamList() {
 	return (
 		<Main variants={container} initial="initial" animate="animate" exit="exit">
 			<SubTitle>꿈 리스트</SubTitle>
-			<BoxBG>
+			<BoxBG
+				initial={{ paddingTop: "0rem" }}
+				whileHover={{ paddingTop: "1.5rem" }}
+			>
 				<BoxContainer>
 					{dreamListData.map((e, index) => {
 						return (
 							<ContentElement
-								bgUrl={e.imageUrl}
+								initial={{ scale: 1 }}
+								whileHover={{ scale: 0.95 }}
+								bgurl={e.imageUrl}
 								key={index}
 								to={`/result/${e._id}`}
 							>
@@ -86,10 +91,9 @@ const SubTitle = styled.h3`
 	font-size: 2rem;
 `;
 
-const BoxBG = styled.div`
+const BoxBG = styled(motion.div)`
 	width: 100%;
 	height: 80%;
-	padding-top: 1rem;
 	border: 2px solid transparent;
 	background-image: linear-gradient(#111, #000),
 		linear-gradient(90deg, #e9c2ec, #a6c0ee);
@@ -97,7 +101,7 @@ const BoxBG = styled.div`
 	background-clip: content-box, border-box;
 `;
 
-const BoxContainer = styled.div`
+const BoxContainer = styled(motion.div)`
 	width: 100%;
 	height: 100%;
 	padding: 1.6rem;
@@ -109,15 +113,15 @@ const BoxContainer = styled.div`
 	overflow-y: scroll;
 `;
 
-const ContentElement = styled(Link)`
+const ContentElement = styled(motion(Link))`
 	width: 22rem;
 	height: 27rem;
 	border: 2px solid transparent;
 	border-radius: 8px;
 	position: relative;
 	background-image: ${(props) => {
-		return props.bgUrl
-			? `url(${props.bgUrl}), linear-gradient(90deg, #e9c2ec, #a6c0ee)`
+		return props.bgurl
+			? `url(${props.bgurl}), linear-gradient(90deg, #e9c2ec, #a6c0ee)`
 			: `transparent, linear-gradient(90deg, #e9c2ec, #a6c0ee)`;
 	}};
 	background-size: cover;
