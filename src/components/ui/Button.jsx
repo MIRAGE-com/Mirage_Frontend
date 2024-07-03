@@ -3,7 +3,11 @@ import { styled } from "styled-components";
 
 function Button({ children, bgColor = "#000", ...props }) {
 	return (
-		<ExploreBtn bgColor={bgColor} {...props}>
+		<ExploreBtn
+			bgColor={bgColor}
+			{...props}
+			whileHover={{ boxShadow: "0px 0px 20px 1px #e9c2ec" }}
+		>
 			{children}
 		</ExploreBtn>
 	);

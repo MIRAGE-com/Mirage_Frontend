@@ -88,7 +88,7 @@ const SubTitle = styled.h3`
 
 const BoxBG = styled.div`
 	width: 100%;
-	height: 520px;
+	height: 80%;
 	padding-top: 1rem;
 	border: 2px solid transparent;
 	background-image: linear-gradient(#111, #000),
@@ -103,6 +103,8 @@ const BoxContainer = styled.div`
 	padding: 1.6rem;
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
 	gap: 15px;
 	overflow-y: scroll;
 `;

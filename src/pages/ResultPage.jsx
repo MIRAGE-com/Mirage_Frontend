@@ -112,7 +112,7 @@ const SubTitle = styled.h3`
 
 const InputBG = styled.div`
 	width: 100%;
-	height: 560px;
+	height: 85%;
 	border: 2px solid transparent;
 	background-image: linear-gradient(#111, #000),
 		linear-gradient(90deg, #e9c2ec, #a6c0ee);
@@ -174,7 +174,7 @@ const RInBox = styled.div`
 	gap: 12px;
 	overflow: scroll;
 	p {
-		font-size: 20px;
+		font-size: 24px;
 	}
 `;
 
@@ -212,7 +212,7 @@ const Keywords = styled(BoxContent)`
 
 const Keyword = styled.span`
 	padding: 4px;
-	border: 2px solid white;
+	/* border: 2px solid white; */
 	background-color: #6b6b6b;
 	font-size: 30px;
 	font-family: "SbAggroM";
