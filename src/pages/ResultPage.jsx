@@ -7,6 +7,7 @@ import { delay, motion } from "framer-motion";
 function ResultPage() {
 	const [dreamData, setDreamData] = useState(null);
 	const [loading, setLoading] = useState(true);
+	const [contentTrigger, SetContentTrigger] = useState(false);
 	const params = useParams();
 
 	useEffect(() => {
@@ -75,7 +76,15 @@ function ResultPage() {
 
 	return (
 		<Main variants={container} initial="initial" animate="animate" exit="exit">
-			<SubTitle>{dreamData.title}</SubTitle>
+			<SubTitle
+				onClick={() => {
+					SetContentTrigger(true);
+					console.log(contentTrigger);
+				}}
+				whileHover={{ scale: 1.2 }}
+			>
+				{dreamData.title}
+			</SubTitle>
 			<InputBG>
 				<ResultBox variants={init}>
 					<LeftBox>
@@ -156,11 +165,44 @@ function ResultPage() {
 					</RightBox>
 				</ResultBox>
 			</InputBG>
+			{contentTrigger ? (
+				<CTriggerDiv
+					onClick={() => {
+						SetContentTrigger(false);
+						console.log(contentTrigger);
+					}}
+				>
+					<CTriggerTitle>꿈 내용</CTriggerTitle>
+					<CTriggerContent>{dreamData.dream_content}</CTriggerContent>
+				</CTriggerDiv>
+			) : null}
 		</Main>
 	);
 }
 
 export default ResultPage;
+
+const CTriggerDiv = styled(motion.div)`
+	padding: 12px 212px;
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 10px;
+	z-index: 1;
+	background-color: rgba(135, 135, 135, 0.5);
+	backdrop-filter: blur(20px);
+	cursor: pointer;
+`;
+
+const CTriggerTitle = styled(motion.h3)`
+	font-size: 40px;
+`;
+
+const CTriggerContent = styled(motion.p)`
+	font-size: 32px;
+	line-height: 1.2;
+`;
 
 const Main = styled(motion.main)`
 	width: 100%;
@@ -171,8 +213,9 @@ const Main = styled(motion.main)`
 	gap: 20px;
 `;
 
-const SubTitle = styled.h3`
+const SubTitle = styled(motion.h3)`
 	font-size: 3rem;
+	cursor: pointer;
 `;
 
 const InputBG = styled(motion.div)`
@@ -270,7 +313,7 @@ const BoxContent = styled(motion.p)`
 	padding-top: 8px;
 	font-size: 24px;
 	font-family: "SbAggroL";
-	line-height: 1.2;
+	line-height: 1.3;
 `;
 
 const Name = styled(motion.h3)`
